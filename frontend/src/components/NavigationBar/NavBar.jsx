@@ -28,6 +28,7 @@ const useStyles = makeStyles({
 });
 
 const navLinks = [
+  { title: 'login', path: '/login' }
 ];
 
 const NavBar = () => {
