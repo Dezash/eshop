@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Login() {
+export default function Recovery() {
   const classes = useStyles();
 
   return (
@@ -57,20 +57,9 @@ export default function Login() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Reset password
         </Typography>
         <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
           <TextField
             variant="outlined"
             margin="normal"
@@ -82,9 +71,16 @@ export default function Login() {
             id="password"
             autoComplete="current-password"
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password-repeat"
+            label="Repeat password"
+            type="password"
+            id="password-repeat"
+            autoComplete="current-password"
           />
           <Button
             type="submit"
@@ -93,20 +89,8 @@ export default function Login() {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Reset password
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="/forgot_password" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href="/signup" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
         </form>
       </div>
       <Box mt={8}>
