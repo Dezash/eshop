@@ -8,7 +8,7 @@ import {
   ListItemText,
   Container
 } from "@material-ui/core";
-import { Home } from "@material-ui/icons";
+import { Home, ShoppingCart } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
@@ -28,7 +28,9 @@ const useStyles = makeStyles({
 });
 
 const navLinks = [
-  { title: 'login', path: '/login' }
+  { title: 'sell', path: '/sell' },
+  { title: 'register', path: '/signup' },
+  { title: 'login', path: '/login' },
 ];
 
 const NavBar = () => {
@@ -38,9 +40,11 @@ const NavBar = () => {
     <AppBar position="static">
       <Toolbar>
         <Container maxWidth="md" className={classes.navbarDisplayFlex}>
-          <IconButton edge="start" color="inherit" aria-label="home">
-            <Home fontSize="large" />
-          </IconButton>
+          <a href="/" className={classes.linkText}>
+            <IconButton edge="start" color="inherit" aria-label="home">
+              <Home fontSize="large" />
+            </IconButton>
+          </a>
           <List
             component="nav"
             aria-labelledby="main navigation"
@@ -53,6 +57,11 @@ const NavBar = () => {
                 </ListItem>
               </a>
             ))}
+          <a href="/cart" className={classes.linkText}>
+            <IconButton edge="start" color="inherit" aria-label="cart">
+              <ShoppingCart fontSize="large" />
+            </IconButton>
+          </a>
           </List>
         </Container>
       </Toolbar>

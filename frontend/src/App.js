@@ -12,7 +12,9 @@ function App() {
       <Route path="/signup" component={SignUp} />
       <Route path="/forgot_password" component={Recovery} />
       <Route path="/reset_password" component={Reset} />
-      <Route exact path="/" component={Login} />
+      <Route path="/:pageName" 
+        render={(props) => <h1>{props.match.params.pageName}</h1> } />
+      <Route exact path="/" render={() => <h1>Homepage</h1>} />
     </Switch>
   );
 }
