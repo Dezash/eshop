@@ -5,12 +5,19 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import NavBar from './components/NavigationBar/NavBar';
+import { Provider } from 'react-redux';
+import sagas from './store/sagas';
+import store, { sagaMiddleware } from './store/store';
+
+sagaMiddleware.run(sagas);
 
 ReactDOM.render(
-  <BrowserRouter>
-    <NavBar />
-    <App />
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <NavBar />
+      <App />
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
 
