@@ -23,3 +23,7 @@ Route::middleware([\App\Http\Middleware\CORS::class])->group(function () {
         'users' => UserController::class,
     ]);
 });
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
