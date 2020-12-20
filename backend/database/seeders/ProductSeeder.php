@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder
@@ -15,6 +16,7 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
+        $user = User::all()->first();
         $product1 = new Product();
         $product2 = new Product();
         $product3 = new Product();
@@ -80,9 +82,15 @@ class ProductSeeder extends Seeder
         $product6->warranty_duration = 12;
         $product6->discount = 0;
 
+        $product1->user()->associate($user);
+        $product2->user()->associate($user);
+        $product3->user()->associate($user);
+        $product4->user()->associate($user);
+        $product5->user()->associate($user);
+        $product6->user()->associate($user);
+
         //$product1->image()->save($image1);
         $categoryPC->product()->save($product1);
-
         //$product2->image()->save($image1);
         $categoryPC->product()->save($product2);
 
