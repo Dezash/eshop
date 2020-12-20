@@ -14,9 +14,9 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', \App\Http\Livewire\ProductList::class);
+Route::get('/products/{id}', \App\Http\Livewire\ProductView::class)->name('product_view');
+
 
 Route::middleware([\App\Http\Middleware\CORS::class])->group(function () {
     Route::resources([

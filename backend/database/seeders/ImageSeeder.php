@@ -30,8 +30,8 @@ class ImageSeeder extends Seeder
         $image4 = new Image();
         $image4->path = 'https://i.picsum.photos/id/580/500/500.jpg?hmac=DfJRLQ0gFwjpHrhORAEvUECyegfo-gforcVpPxXAxUU';
 
-        $product1->image()->save($image1);
-        $product2->image()->save($image2);
-        $product3->image()->save($image3);
+        $product1->images()->save($image1);
+        $product2->images()->save($image2);
+        $product3->images()->save($image3);
     }
 }
