@@ -8,7 +8,7 @@
                 <div class="bg-white shadow w-full my-2 ">
                     <ul class="list-reset">
                         <li class="hover:bg-blue-100 " wire:click="filter_category({{null}})" >
-                            <a class="block p-4 text-grey-darker font-bold border-purple hover:bg-grey-lighter border-r-4">Visi</a>
+                            <a class="block p-4 text-grey-darker font-bold border-purple hover:bg-grey-lighter border-r-4">All</a>
                         </li>
                         @foreach($categories as $category)
                             <li class="hover:bg-blue-100 @if($currentCategory == $category->id) bg-blue-200 @endif" wire:click="filter_category({{$category->id}})" >
@@ -27,7 +27,7 @@
                             <!-- Article -->
                             <article class="overflow-hidden rounded-lg shadow-lg">
                                 <a href="{{route('product_view', $product->id)}}">
-                                    <img alt="Placeholder" class="block h-full w-full" src="{{$product->image->first()['path'] ?? "https://www.trroofingsheets.co.uk/wp-content/uploads/2016/05/default-no-image-1.png"}}">
+                                    <img alt="Placeholder" class="block h-full w-full" src="{{$product->images->first()['path'] ?? "https://www.trroofingsheets.co.uk/wp-content/uploads/2016/05/default-no-image-1.png"}}">
                                 </a>
 
                                 <header class="flex items-center justify-between leading-tight p-2 md:p-4">
@@ -41,14 +41,14 @@
                                     </h1>
                                 </header>
                                 <div class="flex items-center justify-between leading-tight p-2 md:p-4">
-                                    Pardavėjas: {{$product->user->name}}
+                                    Seller: {{$product->user->name}}
                                 </div>
                                 <footer class="flex justify-end leading-none p-2 md:p-4">
                                     <a href="{{route('product_view', $product->id)}}"class="focus:outline-none uppercase font-bold text-blue-700 hover:text-blue-500 mr-4">
-                                        Peržiūrėti
+                                        Show
                                     </a>
                                     <button class="focus:outline-none uppercase font-bold text-blue-700 hover:text-blue-500 mr-4">
-                                        Į krepšelį
+                                        Add to cart
                                     </button>
                                 </footer>
                             </article>

@@ -5,7 +5,7 @@
             <div class="container my-12 mx-auto px-4 md:px-12 lg:col-span-1">
                 <div class="md:flex md:items-center">
                     <div class="w-full h-64 md:w-1/2 lg:h-96">
-                        <img class="h-full w-full rounded-md object-cover max-w-lg mx-auto" src="{{$product->image->first()['path'] ?? "https://www.trroofingsheets.co.uk/wp-content/uploads/2016/05/default-no-image-1.png"}}">
+                        <img class="h-full w-full rounded-md object-cover max-w-lg mx-auto" src="{{$product->images->first()['path'] ?? "https://www.trroofingsheets.co.uk/wp-content/uploads/2016/05/default-no-image-1.png"}}">
                     </div>
                     <div class="w-full max-w-lg mx-auto mt-5 md:ml-8 md:mt-0 md:w-1/2">
                         <h3 class="text-gray-700 uppercase text-lg">{{$product->name}}</h3>
@@ -29,7 +29,7 @@
                             </div>
                         </div>--}}
                         <div class="flex items-center mt-6">
-                            <button class="px-8 py-2 bg-blue-700 text-white uppercase rounded hover:bg-blue-600 focus:outline-none">Į krepšelį</button>
+                            <button class="px-8 py-2 bg-blue-700 text-white uppercase rounded hover:bg-blue-600 focus:outline-none">Add to cart</button>
                         </div>
                     </div>
                 </div>
