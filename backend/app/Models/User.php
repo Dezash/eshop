@@ -20,7 +20,7 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
-    public function product()
+    public function products()
     {
         return $this->hasMany('App\Models\Product');
     }
