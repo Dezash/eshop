@@ -7,6 +7,7 @@ use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 
 class ProductList extends Component
 {
@@ -17,8 +18,8 @@ class ProductList extends Component
     use WithPagination;
     public function render()
     {
-        $searchTerm = '%'.$this->searchTerm.'%';
-        $products = Product::where('name','like', $searchTerm);
+        $searchTerm = '%' . $this->searchTerm . '%';
+        $products = Product::where('name', 'like', $searchTerm);
 
         if ($this->category_id != null)
             $products = $products->where('category_id', $this->category_id);
@@ -32,13 +33,10 @@ class ProductList extends Component
 
     public function filter_category($category = null)
     {
-        if ($category == null)
-        {
+        if ($category == null) {
             $this->category_id = $category;
             //$this->$filtered_products = Product::all();
-        }
-        else
-        {
+        } else {
             $this->category_id = $category;
             //$this->$filtered_products = Product::where('category_id', $category);
         }
@@ -50,4 +48,9 @@ class ProductList extends Component
         $this->categories = Category::all();
     }
 
+    public function addToCart($productID)
+    {
+        $user = auth()->user()->id;
+        DB::insert("INSERT INTO `carts`(`quantity`, `user_id`, `product_id`) VALUES(1, $user, $productID)");
+    }
 }

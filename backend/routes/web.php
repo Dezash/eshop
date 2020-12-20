@@ -16,8 +16,7 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', \App\Http\Livewire\ProductList::class);
 Route::get('/products/{id}', \App\Http\Livewire\ProductView::class)->name('product_view');
-
-
+Route::get('/orders/{id}', \App\Http\Livewire\OrderView::class)->name('order_view');
 Route::middleware([\App\Http\Middleware\CORS::class])->group(function () {
     Route::resources([
         'users' => UserController::class,
@@ -29,3 +28,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::get('userlist', App\Http\Livewire\UserList::class)->name('userlist')->middleware('auth');
+Route::get('cartlist', App\Http\Livewire\CartList::class)->name('cartlist');
