@@ -24,9 +24,9 @@ class ProductSeeder extends Seeder
         $product5 = new Product();
         $product6 = new Product();
 
-        $categoryPC = Category::where('name', 'Kompiuteriai')->first();
-        $categoryMOB = Category::where('name', 'Telefonai')->first();
-        $categoryTV = Category::where('name', 'Televizoriai')->first();
+        $categoryPC = Category::where('name', 'Computers')->first();
+        $categoryMOB = Category::where('name', 'Mobile Phones')->first();
+        $categoryTV = Category::where('name', 'TVs')->first();
 
         $product1->name = 'Personal Computer 1';
         $product1->description = 'pc number1';
@@ -90,19 +90,19 @@ class ProductSeeder extends Seeder
         $product6->user()->associate($user);
 
         //$product1->image()->save($image1);
-        $categoryPC->product()->save($product1);
+        $categoryPC->products()->save($product1);
         //$product2->image()->save($image1);
-        $categoryPC->product()->save($product2);
+        $categoryPC->products()->save($product2);
 
         //$product3->image()->save($image2);
-        $categoryMOB->product()->save($product3);
+        $categoryMOB->products()->save($product3);
 
         //$product4->image()->save($image2);
-        $categoryMOB->product()->save($product4);
+        $categoryMOB->products()->save($product4);
 
         //$product5->image()->save($image3);
-        $categoryTV->product()->save($product5);
+        $categoryTV->products()->save($product5);
 
-        $categoryTV->product()->save($product6);
+        $categoryTV->products()->save($product6);
     }
 }
