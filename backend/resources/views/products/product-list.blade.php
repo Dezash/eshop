@@ -27,7 +27,7 @@
                             <!-- Article -->
                             <article class="overflow-hidden rounded-lg shadow-lg">
                                 <a href="{{route('product_view', $product->id)}}">
-                                    <img alt="Placeholder" class="block h-full w-full" src="{{$product->images->first()['path'] ?? "https://www.trroofingsheets.co.uk/wp-content/uploads/2016/05/default-no-image-1.png"}}">
+                                    <img alt="Placeholder" class="block max-h-64com w-full" src="{{$product->images->first()['path'] ?? "https://www.trroofingsheets.co.uk/wp-content/uploads/2016/05/default-no-image-1.png"}}">
                                 </a>
 
                                 <header class="flex items-center justify-between leading-tight p-2 md:p-4">
