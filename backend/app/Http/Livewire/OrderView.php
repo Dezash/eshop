@@ -8,6 +8,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
@@ -47,8 +48,14 @@ class OrderView extends Component
         $sp = $this->speed;
         $me = $this->method;
         $currID = request()->segment(count(request()->segments()));
-        
+
         DB::update("UPDATE `orders` SET `shipping_address`='$ad', `express_shipping`='$sp', `shipping_type`='$me', `status`='1' WHERE `id`=$currOrd");
+        $cartItems = Cart::all();
+        foreach ($cartItems as $key => $value) {
+            $prodID = $value->product_id;
+            $qnt = $value->quantity;
+            DB::insert("INSERT INTO `orderitems`(`order_id`, `product_id`, `quantity`) VALUES($currOrd, $prodID, $qnt)");
+        }
         DB::delete("DELETE FROM `carts` WHERE `user_id`=$uID");
     }
 }
