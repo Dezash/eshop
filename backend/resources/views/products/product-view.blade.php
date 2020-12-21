@@ -6,7 +6,7 @@
                     <div class="w-full h-64 md:w-1/2 lg:h-96">
                         <img class="h-full w-full rounded-md object-cover max-w-lg mx-auto"
                              src="@if ($product->images->first()['path'] != null )
-                             {{ asset('storage/images/' . $product->images->first()['path'])}}"
+                             {{ asset('storage/images/' . $product->images->first())}}"
                              @else
                              https://picsum.photos/id/{{$product->id}}/1200/1200"
                         @endif>

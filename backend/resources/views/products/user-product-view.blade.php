@@ -4,7 +4,7 @@
     <div class="container my-12 mx-auto px-4 md:px-12 lg:col-span-1">
         <div class="md:flex md:items-center">
             <div class="w-full h-64 md:w-1/2 lg:h-96">
-                <img class="h-full w-full rounded-md object-cover max-w-lg mx-auto" src="@if ($product->images->first()['path'] != null )
+                <img class="h-full w-full rounded-md object-cover max-w-lg mx-auto" src="@if ($product->images->first() != null )
                 {{ asset('storage/images/' . $product->images->first()['path'])}}"
                      @else
                      https://picsum.photos/id/{{$product->id}}/1200/1200"
