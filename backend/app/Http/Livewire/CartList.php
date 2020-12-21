@@ -14,14 +14,10 @@ use Illuminate\Support\Facades\Route;
 class CartList extends Component
 {
     use WithPagination;
-
-    public $quantity;
-
     public function render()
     {
-
         return view('livewire.cart-list', [
-            'cart' => Cart::where('user_id', '=', Auth::user()->id)->paginate(10),
+            'cart' =>  Cart::where('user_id', '=', Auth::user()->id)->paginate(10),
             'products' => Product::all(),
             'orderCount' => Order::count() + 1
         ]);
@@ -32,12 +28,24 @@ class CartList extends Component
         $cartToDelete->delete();
     }
     public function createOrder()
-    {   
+    {
         $uID = auth()->user()->id;
         Order::create([
             'user_id' => $uID
         ]);
         $last = DB::getPdo()->lastInsertId();
-        return redirect('/orders/'.$last);
+        return redirect('/orders/' . $last);
+    }
+    public function increaseQnt(Cart $cartItem)
+    {
+        Cart::where('id', $cartItem->id)->update([
+            'quantity' => $cartItem->quantity + 1
+        ]);
+    }
+    public function lowerQnt(Cart $cartItem)
+    {
+        Cart::where('id', $cartItem->id)->update([
+            'quantity' => ($cartItem->quantity <= 1 ? 1 : $cartItem->quantity - 1)
+        ]);
     }
 }

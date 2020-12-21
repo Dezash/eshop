@@ -5,6 +5,7 @@
 </x-slot>
 @php($total = 0)
 
+
 <div class="py-1">
     <div class="flex justify-center my-6">
         <div class="flex flex-col w-full p-8 text-gray-800 bg-white shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5">
@@ -38,7 +39,17 @@
                             <td class="justify-center md:justify-end md:flex mt-6">
                                 <div class="w-20 h-10">
                                     <div class="relative flex flex-row w-full h-8">
-                                        <input type="number" value="{{$item->quantity}}" class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black" />
+                                        <div class="flex items-center text-sm font-bold" wire:click="increaseQnt({{ $item }})">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-file-plus-fill" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 6a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V10a.5.5 0 0 0 1 0V8.5H10a.5.5 0 0 0 0-1H8.5V6z" />
+                                            </svg>
+                                        </div>
+                                        <input type="text" disabled value="{{$item->quantity}}" style="width:50px" class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black" />
+                                        <div class="flex items-center text-sm font-bold" wire:click="lowerQnt({{ $item }})">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-file-minus-fill" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM6 7.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1H6z" />
+                                            </svg>
+                                        </div>
                                     </div>
 
                                 </div>
