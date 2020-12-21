@@ -18,6 +18,9 @@
                     <x-jet-nav-link href="{{ route('userlist') }}" :active="request()->routeIs('userlist')">
                         Users
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('user_product_list') }}" :active="request()->routeIs('user_product_list')">
+                        My products
+                    </x-jet-nav-link>
                 </div>
             </div>
 
