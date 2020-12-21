@@ -32,11 +32,12 @@ class CartList extends Component
         $cartToDelete->delete();
     }
     public function createOrder()
-    {
+    {   
         $uID = auth()->user()->id;
-        DB::insert("INSERT INTO `orders`(`user_id`) VALUES ($uID)");
+        Order::create([
+            'user_id' => $uID
+        ]);
         $last = DB::getPdo()->lastInsertId();
-
         return redirect('/orders/'.$last);
     }
 }

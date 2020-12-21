@@ -9,8 +9,11 @@ use Livewire\WithPagination;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\OrderItem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route as RoutingRoute;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 
 class OrderView extends Component
@@ -21,41 +24,56 @@ class OrderView extends Component
     public $address;
     public $speed = "exp";
     public $method = 0;
+    public $card;
+    public $currOrdId = 0;
+    public function mount()
+    {
+        $this->currOrdId = request()->segment(count(request()->segments()));
+        $this->order =  Order::find($this->currOrdId);
+    }
 
     public function render()
     {
-        $currID = request()->segment(count(request()->segments()));
+
         return view(
             'orders.order-view',
             [
-                'completed' => DB::table('orders')
-                    ->where([
-                        ['id', '=', $currID],
-                        ['status', '!=', 'null'],
-                    ])->count(),
+                'completed' => $this->order->status, 
             ]
         );
     }
 
     public function submit()
     {
+
+        $this->validate([
+            'address' => ['required'],
+            'card' => ['required', 'regex:/^(\\b\\d{4}\\s\\d{4}\\s\\d{4}\\s\\d{4}\\b) (0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2}) [0-9]{3,4}$/i']
+        ]);
+
         $uID = auth()->user()->id;
-        $currOrd = Order::where('user_id', '=', $uID)
-            ->orderByDesc('id')
-            ->take(1)
-            ->get()[0]->id;
         $ad = $this->address;
         $sp = $this->speed;
         $me = $this->method;
-        $currID = request()->segment(count(request()->segments()));
-
-        DB::update("UPDATE `orders` SET `shipping_address`='$ad', `express_shipping`='$sp', `shipping_type`='$me', `status`='1' WHERE `id`=$currOrd");
+        Order::where('id', $this->currOrdId)->update(
+            [
+                'shipping_address' => $ad,
+                'express_shipping' => $sp,
+                'shipping_type' => $me,
+                'status' => 1
+            ]
+        );
         $cartItems = Cart::all();
         foreach ($cartItems as $key => $value) {
             $prodID = $value->product_id;
             $qnt = $value->quantity;
-            DB::insert("INSERT INTO `orderitems`(`order_id`, `product_id`, `quantity`) VALUES($currOrd, $prodID, $qnt)");
+            OrderItem::create([
+                'order_id' => $this->currOrdId,
+                'product_id' => $prodID,
+                'quantity' => $qnt
+            ]);
         }
-        DB::delete("DELETE FROM `carts` WHERE `user_id`=$uID");
+        Cart::where('user_id', $uID)->delete();
+        $this->redirect(route('order_view', $this->currOrdId));
     }
 }

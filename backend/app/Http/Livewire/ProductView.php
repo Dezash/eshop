@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Cart;
 use App\Models\Product;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
@@ -22,6 +23,10 @@ class ProductView extends Component
     public function addToCart($productID)
     {
         $user = auth()->user()->id;
-        DB::insert("INSERT INTO `carts`(`quantity`, `user_id`, `product_id`) VALUES(1, $user, $productID)");
+        Cart::create([
+            'quantity' => 1,
+            'user_id' => $user,
+            'product_id' => $productID,
+        ]);
     }
 }
