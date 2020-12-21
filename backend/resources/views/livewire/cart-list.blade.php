@@ -62,10 +62,10 @@
                 </table>
                 {{ $cart->links() }}
                 <hr class="pb-6 mt-6">
-                <div class="my-4 mt-6 -mx-2 lg:flex">
+                <div class="my-4 mt-6 -mx-2" style="display:flex; justify-content:center">
                     <div class="lg:px-2 lg:w-1/2">
                         <div class="p-4 bg-gray-100 rounded-full">
-                            <h1 class="ml-2 font-bold uppercase">Order Details</h1>
+                            <h1 class="ml-2 font-bold uppercase" style="text-align:center;">Order Details</h1>
                         </div>
                         <div class="p-4">
                             <div class="flex justify-between pt-4 border-b">
