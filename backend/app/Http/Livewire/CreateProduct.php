@@ -69,6 +69,8 @@ class CreateProduct extends Component
         $product->save();
         $image->product()->associate($product);
         $image->save();
+
+        session()->flash('message', 'Product created.');
         $this->redirect(route('user_product_list'));
 
     }

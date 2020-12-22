@@ -57,5 +57,7 @@ class ProductList extends Component
             'user_id' => $user,
             'product_id' => $productID,
         ]);
+
+        $this->emit('alert', ['type' => 'success', 'message' => 'Item added.']);
     }
 }

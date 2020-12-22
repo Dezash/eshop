@@ -25,6 +25,7 @@ class CartList extends Component
 
     public function delete(Cart $cartToDelete)
     {
+        $this->emit('alert', ['type' => 'success', 'message' => 'Item removed.']);
         $cartToDelete->delete();
     }
     public function createOrder()

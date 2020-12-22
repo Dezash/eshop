@@ -79,7 +79,10 @@ class ApplicationView extends Component
 
             $application->applicant->switchTeam($merchantTeam);
             
+            $this->emit('alert', ['type' => 'success', 'message' => 'Application approved.']);
         }
+        else
+            $this->emit('alert', ['type' => 'success', 'message' => 'Application rejected.']);
 
         $this->application->status = $this->isApproved ? 1 : 0;
 
