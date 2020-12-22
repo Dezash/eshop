@@ -36,6 +36,7 @@ class OrderView extends Component
 
     public function render()
     {
+        $this->address = Auth::user()->address;
 
         return view(
             'orders.order-view',
