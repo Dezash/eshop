@@ -48,12 +48,12 @@
                                 </button>
                             </div>
                         </div>--}}
-
-                        <div class="flex items-center mt-6">
-                            <button class="px-8 py-2 bg-blue-700 text-white uppercase rounded hover:bg-blue-600 focus:outline-none">Add to cart</button>
+                    <div class="flex items-center mt-6">
+                        <button wire:click="addToCart({{ $product->id }})" class="px-8 py-2 bg-blue-700 text-white uppercase rounded hover:bg-blue-600 focus:outline-none">Add to cart</button> 
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-</div>
+    </div>
+    </div>

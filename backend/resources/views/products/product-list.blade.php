@@ -52,7 +52,7 @@
                                     <a href="{{route('product_view', $product->id)}}"class="focus:outline-none uppercase font-bold text-blue-700 hover:text-blue-500 mr-4">
                                         Show
                                     </a>
-                                    <button class="focus:outline-none uppercase font-bold text-blue-700 hover:text-blue-500 mr-4">
+                                    <button wire:click="addToCart({{ $product->id }})" class="focus:outline-none uppercase font-bold text-blue-700 hover:text-blue-500 mr-4">
                                         Add to cart
                                     </button>
                                 </footer>
