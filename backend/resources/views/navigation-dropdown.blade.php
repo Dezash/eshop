@@ -20,6 +20,18 @@
                         Users
                     </x-jet-nav-link>
                     @endcan
+        
+                    @can('viewAny', \App\Models\Application::class)
+                    <x-jet-nav-link href="{{ route('applications') }}" :active="request()->routeIs('applications')">
+                        Applications
+                    </x-jet-nav-link>
+                    @endcan
+
+                    @if(count(Auth::user()->allTeams()) === 0)
+                    <x-jet-nav-link href="{{ route('apply') }}" :active="request()->routeIs('apply')">
+                        Apply
+                    </x-jet-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -133,6 +145,18 @@
                 Users
             </x-jet-responsive-nav-link>
             @endcan
+
+            @can('viewAny', \App\Models\Application::class)
+            <x-jet-responsive-nav-link href="{{ route('applications') }}" :active="request()->routeIs('applications')">
+                Applications
+            </x-jet-responsive-nav-link>
+            @endcan
+
+            @if(count(Auth::user()->allTeams()) === 0)
+            <x-jet-responsive-nav-link href="{{ route('apply') }}" :active="request()->routeIs('apply')">
+                Apply
+            </x-jet-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
