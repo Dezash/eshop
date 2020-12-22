@@ -49,5 +49,10 @@
         @stack('modals')
 
         @livewireScripts
+        <script>
+            window.livewire.on('alert', param => {
+                toastr[param['type']](param['message'], param['type']);
+            });
+        </script>
     </body>
 </html>
