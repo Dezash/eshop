@@ -25,7 +25,9 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
+        Gate::define('seller', function($user){
+            return $user->currentTeam == 2;
+        });
         //
     }
 }
