@@ -25,6 +25,8 @@ class OrderView extends Component
     public $speed = "exp";
     public $method = 0;
     public $card;
+    public $expiration;
+    public $cvc;
     public $currOrdId = 0;
     public function mount()
     {
@@ -48,7 +50,9 @@ class OrderView extends Component
 
         $this->validate([
             'address' => ['required'],
-            'card' => ['required', 'regex:/^(\\b\\d{4}\\s\\d{4}\\s\\d{4}\\s\\d{4}\\b) (0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2}) [0-9]{3,4}$/i']
+            'card' => ['required', 'regex:/^(\\b\\d{4}\\s\\d{4}\\s\\d{4}\\s\\d{4}\\b)$/i'],
+            'expiration' => ['required', 'regex:/^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})/i'],
+            'cvc' => ['required', 'regex:/^[0-9]{3,4}$/i']
         ]);
 
         $uID = auth()->user()->id;

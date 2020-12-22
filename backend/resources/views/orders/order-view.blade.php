@@ -56,7 +56,9 @@
 
                     <div class="mt-6">
                         <h4 class="text-sm text-gray-500 font-medium">Card</h4>
-                        <input class="form-input mt-1 block w-full text-gray-700" wire:model.defer="card" id="cus_name" type="text" placeholder="Card Number MM/YY CVC" aria-label="Name">
+                        <input class="form-input mt-1 block w-full text-gray-700" wire:model.defer="card" id="cus_name" type="text" placeholder="Card Number" aria-label="Name">
+                        <input class="form-input mt-1 text-gray-700" id="cus_name"  wire:model.defer="expiration" type="text" placeholder="MM/YY" aria-label="Name">
+                        <input class="form-input mt-1 text-gray-700" id="cus_name" wire:model.defer="cvc"  type="text" placeholder="CVC" aria-label="Name">
                     </div>
                     <div class="flex items-center justify-between mt-8">
 
