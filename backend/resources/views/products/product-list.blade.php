@@ -27,12 +27,7 @@
                             <!-- Article -->
                             <article class="overflow-hidden rounded-lg shadow-lg">
                                 <a href="{{route('product_view', $product->id)}}">
-                                    <img alt="Placeholder" class="block max-h-64 w-full"
-                                         src="@if ($product->images->first() != null )
-                                         {{ asset('storage/images/' . $product->images->first()['path'])}}"
-                                         @else
-                                         https://picsum.photos/id/{{$product->id}}/1200/1200"
-                                    @endif>
+                                    <img alt="Placeholder" class="block max-h-64 w-full" src="{{$product->images->first()['path'] ?? "https://www.trroofingsheets.co.uk/wp-content/uploads/2016/05/default-no-image-1.png"}}">
                                 </a>
 
                                 <header class="flex items-center justify-between leading-tight p-2 md:p-4">

@@ -22,7 +22,7 @@
                     <tr>
                         <td class="border px-4 py-2">{{ $user->name }}</td>
                         <td class="border px-4 py-2">{{ $user->email }}</td>
-                        <td class="border px-4 py-2">{{ count($user->allTeams()) === 0 ? 'Shopper' : ($user->currentTeam->id === 1 ? 'Admin' : 'Seller') }}</td>
+                        <td class="border px-4 py-2">{{ count($user->allTeams()) === 0 ? 'Shopper' : ($user->hasTeamRole($user->currentTeam, 'admin') ? 'Admin' : 'Seller') }}</td>
                         <td class="border px-4 py-2">
                         <button wire:click="delete({{ $user }})" class="disabled:opacity-50 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
                         </td>

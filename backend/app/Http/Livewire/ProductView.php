@@ -2,9 +2,10 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Cart;
 use App\Models\Product;
 use Livewire\Component;
-use App\Models\Cart;
+use Illuminate\Support\Facades\DB;
 
 class ProductView extends Component
 {

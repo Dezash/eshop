@@ -27,8 +27,7 @@
                         @foreach($cart as $item)
                         <tr>
                             <td class="hidden pb-4 md:table-cell">
-                                <img class=" w-20 rounded" alt="Thumbnail" src=" @if ($products->firstWhere('id', $item->product_id)->images->first() != null )
-                                {{ asset('storage/images/' . $products->firstWhere('id', $item->product_id)->images->first()['path'])}}" @else https://picsum.photos/id/{{$item->product_id}}/1200/1200" @endif>
+                                <img src="{{$products->firstWhere('id', $item->product_id)->images->first()['path'] ?? "https://www.trroofingsheets.co.uk/wp-content/uploads/2016/05/default-no-image-1.png"}}" class=" w-20 rounded" alt="Thumbnail">
                             </td>
                             <td>
                                 <p class="mb-2 md:ml-4"> {{$products->firstWhere('id', $item->product_id)->name}}</p>
