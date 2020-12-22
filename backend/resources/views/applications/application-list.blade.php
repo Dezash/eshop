@@ -1,7 +1,6 @@
-  
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        Users
+        Merchant applications
     </h2>
 </x-slot>
 <div class="py-12">
@@ -11,26 +10,26 @@
             <table class="table-fixed w-full">
                 <thead>
                     <tr class="bg-gray-100">
+                        <th class="px-4 py-2 w-20">#</th>
                         <th class="px-4 py-2">Name</th>
                         <th class="px-4 py-2">Email</th>
-                        <th class="px-4 py-2">Role</th>
                         <th class="px-4 py-2">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($users as $user)
+                    @foreach($applications as $application)
                     <tr>
-                        <td class="border px-4 py-2">{{ $user->name }}</td>
-                        <td class="border px-4 py-2">{{ $user->email }}</td>
-                        <td class="border px-4 py-2">{{ count($user->allTeams()) === 0 ? 'Shopper' : ($user->currentTeam->id === 1 ? 'Admin' : 'Seller') }}</td>
+                        <td class="border px-4 py-2">{{ $application->id }}</td>
+                        <td class="border px-4 py-2">{{ $application->applicant->name }}</td>
+                        <td class="border px-4 py-2">{{ $application->applicant->email }}</td>
                         <td class="border px-4 py-2">
-                        <button wire:click="delete({{ $user }})" class="disabled:opacity-50 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
+                        <a href="/application/{{ $application->id }}" class="disabled:opacity-50 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">View</a>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-            {{ $users->links() }}
+            {{ $applications->links() }}
         </div>
     </div>
 </div>
