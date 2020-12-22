@@ -15,12 +15,14 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
+                    @can('view', \App\Models\User::class)
                     <x-jet-nav-link href="{{ route('userlist') }}" :active="request()->routeIs('userlist')">
                         Users
                     </x-jet-nav-link>
+                    @endcan
                     <x-jet-nav-link href="{{ route('user_product_list') }}" :active="request()->routeIs('user_product_list')">
                         My products
-                    </x-jet-nav-link>
+                    </x-jet-nav-link>      
                 </div>
             </div>
 
@@ -65,15 +67,17 @@
 
                         <!-- Team Management -->
                         @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
+                            @if(count(Auth::user()->allTeams()) !== 0)
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ __('Manage Team') }}
                             </div>
 
                             <!-- Team Settings -->
+                            @can('view', Auth::user()->currentTeam)
                             <x-jet-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
                                 {{ __('Team Settings') }}
                             </x-jet-dropdown-link>
-
+                            @endcan
                             @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
                                 <x-jet-dropdown-link href="{{ route('teams.create') }}">
                                     {{ __('Create New Team') }}
@@ -92,6 +96,7 @@
                             @endforeach
 
                             <div class="border-t border-gray-100"></div>
+                            @endif
                         @endif
 
                         <!-- Authentication -->
@@ -126,9 +131,11 @@
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
+            @can('view', \App\Models\User::class)
             <x-jet-responsive-nav-link href="{{ route('userlist') }}" :active="request()->routeIs('userlist')">
                 Users
             </x-jet-responsive-nav-link>
+            @endcan
         </div>
 
         <!-- Responsive Settings Options -->
@@ -175,10 +182,15 @@
                         {{ __('Manage Team') }}
                     </div>
 
+
+                    @if(count(Auth::user()->allTeams()) !== 0)
+                    @can('view', Auth::user()->currentTeam)
                     <!-- Team Settings -->
                     <x-jet-responsive-nav-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}" :active="request()->routeIs('teams.show')">
                         {{ __('Team Settings') }}
                     </x-jet-responsive-nav-link>
+                    @endcan
+                    @endif
 
                     <x-jet-responsive-nav-link href="{{ route('teams.create') }}" :active="request()->routeIs('teams.create')">
                         {{ __('Create New Team') }}

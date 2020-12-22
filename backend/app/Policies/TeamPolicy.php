@@ -30,7 +30,7 @@ class TeamPolicy
      */
     public function view(User $user, Team $team)
     {
-        return $user->belongsToTeam($team);
+        return $user->ownsTeam($team);
     }
 
     /**
@@ -41,7 +41,7 @@ class TeamPolicy
      */
     public function create(User $user)
     {
-        return true;
+        return false;
     }
 
     /**
