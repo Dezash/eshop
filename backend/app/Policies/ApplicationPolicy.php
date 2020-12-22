@@ -25,7 +25,7 @@ class ApplicationPolicy
 
     public function before(User $user, $ability)
     {
-        if ($user->belongsToTeam($this->staffTeam) && $user->hasTeamRole($this->staffTeam, 'admin'))
+        if ($user->currentTeam->id === 1)
         {
             return true;
         }

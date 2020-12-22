@@ -27,5 +27,12 @@ class TeamSeeder extends Seeder
                 'name' => 'Merchants',
                 'personal_team' => false,
             ]);
+
+        Team::create(
+            [
+                'user_id' => 1,
+                'name' => 'Default',
+                'personal_team' => false,
+            ]);
     }
 }
