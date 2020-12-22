@@ -20,7 +20,12 @@
                         Users
                     </x-jet-nav-link>
                     @endcan
-        
+                    @can('seller')
+                        <x-jet-nav-link href="{{ route('user_product_list') }}" :active="request()->routeIs('user_product_list')">
+                            My products
+                        </x-jet-nav-link>
+                    @endcan
+ 
                     @can('viewAny', \App\Models\Application::class)
                     <x-jet-nav-link href="{{ route('applications') }}" :active="request()->routeIs('applications')">
                         Applications

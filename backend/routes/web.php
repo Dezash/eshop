@@ -18,7 +18,10 @@ use Illuminate\Http\Request;
 
 Route::get('/', \App\Http\Livewire\ProductList::class)->middleware('auth');
 Route::get('/products/{id}', \App\Http\Livewire\ProductView::class)->name('product_view');
-
+Route::get('/userProducts', \App\Http\Livewire\UserProductList::class)->name('user_product_list');
+Route::get('/userProducts/{id}', \App\Http\Livewire\UserProductView::class)->name('user_product_view');
+Route::get('/createProduct', \App\Http\Livewire\CreateProduct::class)->name('create_product_view');
+Route::get('/editProduct/{id}', \App\Http\Livewire\EditProduct::class)->name('edit_product_view');
 
 Route::middleware([\App\Http\Middleware\CORS::class])->group(function () {
     Route::resources([
