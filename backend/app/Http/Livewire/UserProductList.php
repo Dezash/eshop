@@ -21,6 +21,8 @@ class UserProductList extends Component
     {
         if ($product->images()->first() != null)
             Storage::disk('public')->delete("images/" . $product->images()->first()->path);
+
+        $this->emit('alert', ['type' => 'success', 'message' => 'Product deleted.']);
         $product->delete();
     }
 }

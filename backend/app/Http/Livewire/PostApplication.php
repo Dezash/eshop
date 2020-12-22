@@ -28,6 +28,7 @@ class PostApplication extends Component
             'applicant_id' => Auth::id(),
         ]);
 
+        session()->flash('message', 'Application posted.');
         return redirect()->to('/');
     }
 }

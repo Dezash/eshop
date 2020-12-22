@@ -73,6 +73,7 @@ class EditProduct extends Component
         else
             $this->product->save();
 
+        session()->flash('message', 'Product updated.');
         $this->redirect(route('user_product_list'));
     }
 

@@ -26,7 +26,9 @@ class UserList extends Component
     }
 
     public function delete(User $userToDelete)
-    {
+    { 
+        
+        $this->emit('alert', ['type' => 'success', 'message' => 'User deleted.']);
         $userToDelete->delete();
     }
 }
